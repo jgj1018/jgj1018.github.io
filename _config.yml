@@ -19,7 +19,7 @@ description: 고등학교 시절에는 문학을 좋아하는 미대 입시 준�
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
-github_username:  jekyll
+github_username:  jgj1018
 
 # Build settings
 markdown: kramdown
