@@ -13,12 +13,11 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: 문송한 프로그래머
+title: 문송한 프로그래머 (An unskilled programmer of Liberal Arts)
 email: jgj1018@gmail.com
 description: 고등학교 시절에는 문학을 좋아하는 미대 입시 준비생이었고, 대학에선 철학과 역사학을 복수전공한 순수인문학도였는데, 정신을 차려보니 프로그래머가 되어 있었습니다.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
 github_username:  jgj1018
 
 # Build settings
