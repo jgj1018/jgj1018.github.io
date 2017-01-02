@@ -1,9 +1,0 @@
----
-layout: post
-title:  "test post 2"
-date:   2016-12-24 23:37:59 +0900
-categories: test
-
----
-
-this is test post

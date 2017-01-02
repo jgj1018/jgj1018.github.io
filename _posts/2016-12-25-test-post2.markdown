@@ -1,9 +1,0 @@
----
-layout: post
-title:  "cakephp test post 1"
-date:   2016-12-25 23:37:59 +0900
-categories: cakephp
-
----
-
-this is cakephp post test
