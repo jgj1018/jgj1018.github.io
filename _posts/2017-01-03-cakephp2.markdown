@@ -1,0 +1,127 @@
+---
+layout: post
+title:  "[CakePHP] Matching 과 Contain"
+date:   2017-01-03 02:37:59 +0900
+categories: cakephp
+
+---
+
+
+[CakePHP] Matching 과 Contain
+
+CakePHP는 데이터베이스 조작 시 기본적으로 [ORM][orm] 방식을 취하고 있습니다. 따라서 CakePHP에서 제시한 [Conventions][convention]에만 따라준다면 Query를 소위 `쌩코딩`하지 않고도 쉽게 데이터베이스를 조작할 수 있습니다. 공부를 하다 보니까 matching과 contain의 차이가 명쾌하게 이해가 가질 않아서 따로 알아보았습니다. <!--break--> Cookbook의 내용을 번역한 부분이 다수 포함되어 있음을 미리 밝힙니다. 하지만 아직 석연찮은 부분이 있어서 이 포스트는 1월 중순 안에 한 차례 내용 보충을 하도록 하겠습니다.
+
+**contain**
+
+Cookbook에 따르면 contain과 matching의 차이는 각 함수의 존재 이유가 다르다는 점입니다. contain의 목적은 `결합데이터(associated data, 関連つけられたデータ）를 불러오는 것`입니다.(제 번역어가 탐탁치 않을 경우에는 영어 또는 일본어 원문을 적어놓도록 하겠습니다) 즉 contain 함수은 '다른 테이블의 내용물과 같이 select, 즉 우리가 아는 join을 하는 역할입니다. 별도의 config를 설정하지 않을 시 내부적으론 Left join이 default로 실행됩니다. 다시 말하면 `contain이란 Left join을 해주는 함수`라고도 할 수 있습니다. 게다가 contain은 단순히 leftjoin을 실행해줄 뿐 아니라, Eagar Loading 방식에 따라 보다 효율적인 쿼리를 자동으로 만들어주는 능력도 갖고 있습니다. 덧붙여, 불러온 결합데이터를 대상으로 추가 조건을 덧붙여 filtering을 행할 수도 있습니다.
+
+대표적인 사용 예시는 다음과 같습니다.
+
+
+```
+$query = $articles->find('all');
+$query->contain(['Authors', 'Comments']);
+```
+
+내용인 즉슨, article 테이블의 데이터와, Authors, Comments 테이블의 데이터를 left join 시키겠다는 것입니다.
+
+
+```
+$query = $articles->find()->contain([
+    'Authors' => ['Addresses'], 'Comments' => ['Authors']
+]);
+```
+
+위와 같이 해당 테이블에서 특정 컬럼만 따로 뽑아서 결합을 하는 것도 가능합니다. 똑같은 내용을 아래와 같이 표현할 수도 있습니다. CakePHP에서는 다음과 같이 Dot(.) 표현법을 애용합니다. 도트를 통해 이중 삼중 nested된 테이블까지 접근하는 것이 가능합니다.
+
+
+```
+$query = $articles->find()->contain([
+    'Authors.Addresses',
+    'Comments.Authors'
+]);
+```
+
+contain 함수에서는 불러온 데이터를 대상으로 다음과 같이 필터링 거칠 수도 있습니다.
+
+
+```
+$query = $articles->find()->contain([
+    'Comments',
+    'Authors.Profiles' => function ($q) {
+        return $q->where(['Profiles.is_published' => true]);
+    }
+]);
+```
+
+풀어서 설명하자면, comments 테이블, 그리고 authors 클래스와 연결된 profiles 클래스를 Left join하되 is_published 속성(컬럼)이 true인 경우에만 결합해서 select해오도록 한 것입니다. 사실 이 부분이 matching 과 구분이 되지 않아 아직 명쾌하지 않습니다. 1월 중에 해답을 가지고 본 포스트를 수정하도록 하겠습니다. 그리고 이 `contain 함수를 사용하기 위해선 테이블간의 관계를 hasOne, hasMany 등으로 사전에 설정`해두어야만 사용할 수 있는 메소드입니다. 하지만 이 사전 설정에 대한 부분은 본 포스트에선 생략하겠습니다. 사전 설정 정보가 필요하신 분은 [Associations - Linking Tables Together][associations]를 참고해주시기 바랍니다.
+
+**matching**
+
+한편 matching은 결합데이터(associated data, 関連つけられたデータ)의 내용을 필터링하는 함수입니다. 즉 `matching`은 일종의 `여과기(filter)`라고 할 수 있습니다.find()등을 통해 가져온 결과물에 대해 filter를 달아서 자신이 원하는 내용만 얻도록 걸러주는 역할을 합니다. 예로 들어, 네이버 뉴스를 생각했을 때, 주제와 뉴스 기사의 관계는 many to many라고 할 수 있습니다. 인공지능에 관한 뉴스는 IT 주제에도 속하고, 과학 주제에도 속하며, 사회 주제에도 속할 수 있습니다. 동시에 IT, 과학, 사회 각각의 주제는 인공지능말고도 다양한 기삿거리를 포함하고 있습니다. 여기서 우리가 IT 주제에 속하는 뉴스기사만 추려서 보고 싶을 경우를 생각해 봅시다.
+
+
+```
+$query = $articles->find();
+$query->matching('Themes', function ($q) {
+    return $q->where(['Themes.name' => 'IT']);
+});
+```
+
+matching을 하면 내부적으로 Inner join이 실행됩니다. 조건에 딱 맞는 데이터만 추리는 것이기 때문에 어찌 보면 당연한 이치입니다. 만약 인터넷 뉴스 기사 중에서 유저명이 kim인 사람이 코멘트를 단 기사만 추리는 식은 다음과 같이 쓸 수 있을 것입니다.
+
+
+```
+$query = $articles->find();
+$query->matching('Comments.Users', function ($q) {
+    return $q->where(['username' => 'kim']);
+);
+
+```
+
+하지만 위 식의 경우엔 문제가 생길 여지가 있는데, 바로 한 사람이 동일한 기사에 댓글을 여러 개 달았을 경우를 생각해 볼 수 있습니다. 그럼 articles 테이블의 id 등으로 distinct 처리를 하지 않으면 중복된 행을 불러오게 될 것입니다. 이 경우 distinct를 matching 이전에 추가하여 해결할 수 있습니다.
+
+
+```
+$query->distinct(['Articles.id'])
+->matching('Comments.Users', function ($q) {
+    return $q->where(['username' => 'markstory']);
+);
+```
+
+한편, matching 과 정반대 처리를 하는 notmatching 함수도 존재합니다. 문법은 동일합니다. 아래는 IT 관련 뉴스를 제외한 나머지 뉴스만 출력하는 예시입니다. Matching의 M이 대문자인 점에 주의하십시오.
+
+
+```
+$query = $articles->find();
+$query->notMatching('Themes', function ($q) {
+    return $q->where(['Themes.name' => 'IT']);
+});
+```
+
+notMatching은 matching과 달리 내부적으로 Left Join 구문이 실행됩니다. 그리고 matching 때와 같은 이유로 중복행을 제거 하기 위해 distinct를 사용해야 할 때가 있습니다. 그리고 notMatching 과 matching을 결합하여 사용할 수도 있습니다.
+
+```
+$query = $articlesTable
+    ->find()
+    ->notMatching('Comments.Users', function ($q) {
+        return $q->where(['username' => 'kim']);
+    })
+    ->matching('Comments');
+```
+
+위 예시는, comment가 적어도 하나 달린 article을 추리되, username이 kim인 사람이 comment를 단 경우는 제외하는 쿼리입니다.
+
+
+
+
+`본 게시글은 2017.01.03 마지막 수정되었습니다`
+
+
+
+
+
+
+[orm]: https://book.cakephp.org/3.0/en/orm.html
+[convention]: https://book.cakephp.org/3.0/en/intro.html#conventions-over-configuration
+[associations]: https://book.cakephp.org/3.0/en/orm/associations.html
