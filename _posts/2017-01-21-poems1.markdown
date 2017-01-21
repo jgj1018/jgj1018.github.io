@@ -1,0 +1,15 @@
+---
+layout: post
+title:  "[poems] 블로그를 이사하면서"
+date:   2017-01-21 20:59:59 +0900
+categories: poems
+comments: true
+sitemap:
+  lastmod: 2016-01-21
+  priority: 0.7
+  changefreq: 'monthly'
+  exclude: 'yes'
+---
+
+2014년 8월부터 네이버 블로그에 좋아하는 시들을 수집해왔었습니다. 이제 기술 블로그를 열었고 네이버 블로그는 접었을 따름이니, 시간 날 때마다 하나씩 이곳으로 옮겨올 요량입니다.
+<!--break-->

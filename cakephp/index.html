@@ -2,6 +2,23 @@
 layout: default
 title: cakephp
 permalink: /cakephp/
+sitemap: false
 ---
 
-cakephp
+<div>
+    {% assign categories = site.categories | sort %}
+</div>
+
+<div id="index">
+{% for category in categories %}
+  {%if category[0] contains "cakephp"%}
+    <a name="{{ category[0] }}"></a><h2>{{ category[0] | replace:'-', ' ' }} ({{ category | last | size }}) </h2>
+    {% assign sorted_posts = site.posts | sort: 'title' %}
+      {% for post in sorted_posts %}
+        {%if post.categories contains "cakephp"%}
+            <h3><a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
+        {%endif%}
+      {% endfor %}
+  {%endif%}
+{% endfor %}
+</div>
