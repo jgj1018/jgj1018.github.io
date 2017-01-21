@@ -11,10 +11,7 @@ sitemap:
   exclude: 'yes'
 ---
 
-
-[CakePHP] Matching 과 Contain의 차이
-
-CakePHP는 데이터베이스 조작 시 기본적으로 [ORM][orm] 방식을 취하고 있습니다. 따라서 CakePHP에서 제시한 [Conventions][convention]에만 따라준다면 Query를 소위 `쌩코딩`하지 않고도 쉽게 데이터베이스를 조작할 수 있습니다. 공부를 하다 보니까 matching과 contain의 차이가 명쾌하게 이해가 가질 않아서 따로 알아보았습니다. <!--break--> Cookbook의 내용을 번역한 부분이 다수 포함되어 있음을 미리 밝힙니다. 하지만 아직 석연찮은 부분이 있어서 이 포스트는 1월 중순 안에 한 차례 내용 보충을 하도록 하겠습니다.
+CakePHP는 데이터베이스 조작 시 기본적으로 [ORM][orm] 방식을 취하고 있습니다. 따라서 CakePHP에서 제시한 [Conventions][convention]에만 따라준다면 Query를 소위 쌩코딩하지 않고도 쉽게 데이터베이스를 조작할 수 있습니다. 공부를 하다 보니까 matching과 contain의 차이가 명쾌하게 이해가 가질 않아서 따로 알아보았습니다. <!--break--> Cookbook의 내용을 번역한 부분이 다수 포함되어 있음을 미리 밝힙니다. 하지만 아직 석연찮은 부분이 있어서 이 포스트는 1월 중순 안에 한 차례 내용 보충을 하도록 하겠습니다.
 
 **contain**
 

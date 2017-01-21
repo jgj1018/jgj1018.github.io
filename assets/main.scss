@@ -1,0 +1,90 @@
+---
+---
+@charset "utf-8";
+
+$base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$base-font-size:   16px;
+$base-font-weight: 400;
+$small-font-size:  $base-font-size * 0.875;
+$base-line-height: 1.5;
+
+$spacing-unit:     30px;
+
+$text-color:       #111;
+$background-color: #fdfdfd;
+$brand-color:      #2a7ae2;
+
+$grey-color:       #828282;
+$grey-color-light: lighten($grey-color, 40%);
+$grey-color-dark:  darken($grey-color, 25%);
+
+$content-width:    800px;
+
+$on-palm:          600px;
+$on-laptop:        800px;
+
+// @include media-query($on-palm) {
+//     .wrapper {
+//         padding-right: $spacing-unit / 2;
+//         padding-left: $spacing-unit / 2;
+//     }
+// }
+
+.post-header .post-title {
+  font-size: 30px;
+}
+
+//default.html
+.site-header {
+  background-color: black;
+}
+
+.site-title span {
+  color: white;
+}
+
+.page-link span {
+  color: white;
+}
+
+.site-footer {
+  background-color: black;
+
+  .wrapper h2 {
+    color: white;
+    font-weight: bold;
+  }
+}
+
+.footer-col p {
+  color: white;
+}
+
+//index.html
+.one-post {
+  background-color: #c0c0c0;
+  margin: 5px;
+  border-radius: 10px;
+
+  a .title {
+    color: black;
+    font-size: 22px;
+    padding: 0px 0px 0px 15px;
+  }
+
+  .date {
+    color: #fffafa;
+    text-align: right;
+    padding: 0px 15px 0px 0px;
+  }
+
+  .content {
+    padding: 0px 15px 15px 15px;
+
+    p {
+      color: black;
+    }
+  }
+}
+
+@import "minima";
