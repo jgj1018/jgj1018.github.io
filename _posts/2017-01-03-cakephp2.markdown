@@ -4,7 +4,11 @@ title:  "[CakePHP] Matching 과 Contain의 차이"
 date:   2017-01-03 02:37:59 +0900
 categories: cakephp
 comments: true
-
+sitemap:
+  lastmod: 2016-01-15
+  priority: 0.7
+  changefreq: 'monthly'
+  exclude: 'yes'
 ---
 
 

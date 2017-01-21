@@ -31,3 +31,4 @@ exclude:
   - Gemfile.lock
 paginate: 3
 paginate_path: "blog/page:num"
+url: https://jgj1018.github.io/

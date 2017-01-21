@@ -4,7 +4,11 @@ title:  "Cakephp Tab: 시작에 앞서"
 date:   2017-01-02 22:37:59 +0900
 categories: cakephp
 comments: true
-
+sitemap:
+  lastmod: 2016-01-02
+  priority: 0.7
+  changefreq: 'monthly'
+  exclude: 'yes'
 ---
 
 블로그를 어떻게 운영할까 고민을 해봤는데, 2017년에는 자신의 공부를 정리하는 식으로 블로그를 운영하려고 합니다. 3개월 연수를 제외하면 경력이 고작 1개월의 초보개발자인 제가 섣불리 새로운 내용을 알려주려다가 정확하지 않은 내용을 전달할 수 있을 것 같아 우려가 되기 때문입니다.
