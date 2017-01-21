@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "빈집 - 기형도"
+title:  "[poems] 빈집 - 기형도"
 date:   2017-01-21 21:59:59 +0900
 categories: poems
 comments: true
@@ -10,7 +10,6 @@ sitemap:
   changefreq: 'monthly'
   exclude: 'yes'
 ---
-
 <!--break-->
 
 빈집
@@ -26,9 +25,3 @@ sitemap:
 
 장님처럼 나 이제 더듬거리며 문을 잠그네  
 가엷은 내 사랑 빈집에 갇혔네  
-
-
-
-
-
-  
