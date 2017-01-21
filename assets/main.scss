@@ -31,33 +31,28 @@ $on-laptop:        800px;
 // }
 
 .post-header .post-title {
-  font-size: 30px;
+  font-size: 15px;
 }
 
 //default.html
 .site-header {
-  background-color: black;
+  background-color: #404040;
 }
 
 .site-title span {
-  color: white;
+  color: #FFFAFA;
 }
 
 .page-link span {
-  color: white;
+  color: #FFFAFA;
 }
 
 .site-footer {
-  background-color: black;
-
-  .wrapper h2 {
-    color: white;
-    font-weight: bold;
-  }
+  background-color: #404040;
 }
 
 .footer-col p {
-  color: white;
+  color: #FFFAFA;
 }
 
 //index.html
@@ -85,6 +80,10 @@ $on-laptop:        800px;
       color: black;
     }
   }
+}
+
+.pagination .previous {
+  margin: 5px;
 }
 
 @import "minima";
