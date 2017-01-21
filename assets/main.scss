@@ -11,7 +11,7 @@ $base-line-height: 1.5;
 $spacing-unit:     30px;
 
 $text-color:       #111;
-$background-color: #fdfdfd;
+$background-color: gray;
 $brand-color:      #2a7ae2;
 
 $grey-color:       #828282;
@@ -93,10 +93,27 @@ $on-laptop:        800px;
   font-size: 15px;
 }
 
+//body
+
+#body {
+  background-color: #fdfdfd;
+
+}
 //mobile
 
-.page-link span {
-  color: black;
-}
+// Use media queries like this:
+// @include media-query($on-palm) {
+//   .wrapper {
+//     padding-right: $spacing-unit / 2;
+//     padding-left: $spacing-unit / 2;
+//   }
+// }
+// .page-link span {
+//    color: black;
+// }
+
+// nav.site-nav {
+//   background-color: gray;
+// }
 
 @import "minima";
