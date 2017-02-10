@@ -1,11 +1,11 @@
 ---
 layout: post
 title:  "[poems] 질투는 나의 힘 - 기형도"
-date:   2017-01-21 21:59:59 +0900
+date:   2017-02-10 21:59:59 +0900
 categories: poems
 comments: true
 sitemap:
-  lastmod: 2016-01-21
+  lastmod: 2016-02-10
   priority: 0.7
   changefreq: 'monthly'
   exclude: 'yes'
