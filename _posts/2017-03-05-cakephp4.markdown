@@ -1,0 +1,73 @@
+---
+layout: post
+title:  "[PHP] CodeSniffe에서 특정 스니퍼(규칙, 패턴, rule)을 제거하는 법"
+date:   2017-03-05 11:59:59 +0900
+categories: cakephp
+comments: true
+sitemap:
+  lastmod: 2016-03-05
+  priority: 0.7
+  changefreq: 'monthly'
+  exclude: 'yes'
+---
+
+코드 스니퍼는 우리의 코드 정해진 규정(또는 모범)에 잘 맞는지 확인해주는 편리한 프로그램이지만, 가끔은 가독성 향상을 위해 규정을 어겨야 할 때도 있습니다. 예로 들어 아래와 같은 메소드를 상정해봅시다
+<!--break-->
+
+```
+function test()
+{
+  $a = 1;
+  $aa = 2;
+  $aaa = 3;
+}
+```
+
+평범한 메소드지만 소위 각을 잡아서 좀더 가독성을 높여볼 수 있겠습니다.
+
+```
+function test()
+{
+  $a   = 1;
+  $bb  = 2;
+  $ccc = 3;
+}
+```
+이렇게만 보면 특별히 가독성이 향상되었다고 느끼기 힘들 수도 있겠지만, 코드가 복잡할 땐, 이런 라인 맞춤이 가독성 향상에 도움이 되곤 합니다. 하지만 이렇게 썼을 시에 코드스니퍼는 에러를 던집니다. 해당 파일의 파일명을 prac.php라고 해봅시다. 그럼 해당 파일을 검사하는 명령어는 다음과 같을 것입니다
+
+```
+phpcs prac.php
+```
+
+이 명령어로 해당 파일을 검사했을 때, 코드스니퍼의 검사 결과에는 다음과 같은 내용이 들어가 있습니다. 편의상 필요한 부분만 빼오도록 하겠습니다.
+
+```
+ 5 | ERROR | [x] Line indented incorrectly; expected at least 4
+   |       |     spaces, found 2
+ 6 | ERROR | [x] Line indented incorrectly; expected at least 4
+   |       |     spaces, found 2
+ 7 | ERROR | [x] Line indented incorrectly; expected at least 4
+   |       |     spaces, found 2
+```
+
+내용인 즉슨, 불필요한 스페이스가 들어갔다는 것입니다. 하지만 위에서도 말했다시피 가독성을 높이기 위해선 규정을 어겨야 할 때가 있습니다. 꼭 이 경우가 아니더라도 말이죠. 그럴 경우엔 코드 스니퍼 자체의 에러 판단 규정을 수정할 필요성이 있습니다.
+
+가장 편한 방법으로는 --exclude 옵션을 집어넣는 것입니다. `Exclude라는 영어 단어의 의미 그대로 띄어쓰기(인덴트) 판단을 하는 스니퍼를 제외하고 처리를 하게끔 하는 것입니다.`  명령어는 다음과 같이 써볼 수 있습니다.
+
+```
+phpcs --exclude=PEAR.WhiteSpace.ScopeIndent prac.php
+```
+
+prac.php는 코드스니퍼의 검사 대상이 되는 파일의 경로이므로, --exclude=부터 적힌 내용만 주목하시면 됩니다. 아시다시피 코드스니퍼의 기본 스탠다드는 PEAR이기 때문에, PEAR에 속하는 스니퍼 중에서 WhiteSpace.ScopeIndent에 해당하는 스니퍼를 제외시키겠다는 의미입니다. 자신이 제거하고자 하는 스니퍼가 무엇인지 알고 싶으면 document를 찾아보면 되겠습니다. 아니면 그냥 자신이 사용하는 스탠다드(PEAR 등)의 폴더에 들어가면 꽤 보기 편하게 폴더명이 정리되어 있습니다. 아무튼 위 내용은 PEAR 스탠다드에서 WhiteSpace.ScopeIndent라는 스니퍼를 제외하고 검사를 진행한다는 의미입니다. 이 명령문을 통해 검사를 하면, 위에서 나왔던 에러메시지가 깔끔하게 사라집니다.
+
+하지만 매번 --exclude 라는 옵션을 넣는 것은 번거로운 일입니다. 아예 매번 검사할 때마다 해당 스니퍼를 적용하지 않게 설정하는 편이 더 편할 것입니다. 그럴 경우엔 `ruleset.xml` 파일에 `exclude-pattern` 을 설정해넣으면 됩니다. 저는 PEAR 스탠다드를 사용하고 있으므로 PEAR 스탠다드의 ruleset를 수정할 필요가 있습니다. 경로는 저와 같은 경우엔 다음과 같았습니다. /usr/share/pear/PHP/CodeSniffer/Standards/PEAR/ruleset.xml 해당 파일에 다음과 같은 항목을 심어줍니다.
+
+```
+<rule ref="PEAR.WhiteSpace.ScopeIndent">
+  <exclude-pattern>/prac.php</exclude-pattern>
+</rule>
+```
+
+내용인 즉슨 코드스니퍼로 검사를 할 때, exclude-pattern에 해당하는 파일에 대해서는 ref에 적힌 스니퍼를 적용하지 말라는 의미입니다. /prac.php의 위치에 그냥 * 기호를 넣으면 모든 파일에서 해당 스니퍼를 적용하지 않게 됩니다. 작은 정보가 도움이 되었으면 합니다.
+
+`본 게시글은 2017.03.05 마지막 수정되었습니다`

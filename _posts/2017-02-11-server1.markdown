@@ -2,7 +2,7 @@
 layout: post
 title:  "[Server] Nginx로 가상 호스트(서버 블록) 설정 방법"
 date:   2017-02-11 01:59:59 +0900
-categories: poems
+categories: server
 comments: true
 sitemap:
   lastmod: 2016-02-11
