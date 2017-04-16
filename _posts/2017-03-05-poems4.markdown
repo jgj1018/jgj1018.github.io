@@ -5,7 +5,7 @@ date:   2017-03-05 10:59:59 +0900
 categories: poems
 comments: true
 sitemap:
-  lastmod: 2016-03-05
+  lastmod: 2017-03-05
   priority: 0.7
   changefreq: 'monthly'
   exclude: 'yes'
@@ -18,4 +18,3 @@ sitemap:
 남포로 임보내니 노랫가락마저 구슬프네  
 대동강 물은 그 언제 다할 것인가  
 해마다 이별의 눈물만 푸른 물결에 더하는 것을  
-  

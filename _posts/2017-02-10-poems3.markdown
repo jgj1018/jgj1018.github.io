@@ -5,7 +5,7 @@ date:   2017-02-10 21:59:59 +0900
 categories: poems
 comments: true
 sitemap:
-  lastmod: 2016-02-10
+  lastmod: 2017-02-10
   priority: 0.7
   changefreq: 'monthly'
   exclude: 'yes'

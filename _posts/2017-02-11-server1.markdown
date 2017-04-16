@@ -5,7 +5,7 @@ date:   2017-02-11 01:59:59 +0900
 categories: server
 comments: true
 sitemap:
-  lastmod: 2016-02-11
+  lastmod: 2017-02-11
   priority: 0.7
   changefreq: 'monthly'
   exclude: 'yes'

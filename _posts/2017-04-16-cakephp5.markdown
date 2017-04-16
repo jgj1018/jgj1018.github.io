@@ -5,7 +5,7 @@ date:   2017-04-16 11:59:59 +0900
 categories: cakephp
 comments: true
 sitemap:
-  lastmod: 2016-04-16
+  lastmod: 2017-04-16
   priority: 0.7
   changefreq: 'monthly'
   exclude: 'yes'
