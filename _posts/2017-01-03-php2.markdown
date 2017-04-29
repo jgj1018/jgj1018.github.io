@@ -2,7 +2,7 @@
 layout: post
 title:  "[CakePHP] Matching 과 Contain의 차이"
 date:   2017-01-03 02:37:59 +0900
-categories: cakephp
+categories: php
 comments: true
 sitemap:
   lastmod: 2017-01-15

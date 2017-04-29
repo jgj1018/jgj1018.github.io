@@ -2,7 +2,7 @@
 layout: post
 title:  "[PHP] CodeSniffe에서 특정 스니퍼(규칙, 패턴, rule)을 제거하는 법"
 date:   2017-03-05 11:59:59 +0900
-categories: cakephp
+categories: php
 comments: true
 sitemap:
   lastmod: 2017-03-05
