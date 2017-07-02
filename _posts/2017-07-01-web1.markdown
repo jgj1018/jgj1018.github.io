@@ -1,0 +1,52 @@
+---
+layout: post
+title:  "[Web] HTML과 XML의 차이"
+date:   2017-07-01 11:59:59 +0900
+categories: web
+comments: true
+sitemap:
+  lastmod: 2017-07-02
+  priority: 0.7
+  changefreq: 'monthly'
+  exclude: 'yes'
+---
+
+최근 기본에 충실하지 못했다는 생각이 들어서, 스스로 애매하게 알고 있는 부분들을 다시 짚어보고자 합니다. 먼저 XML과 HTML의 차이를 알아본 뒤, CDATA의 역할에 대해서 살펴보겠습니다.
+<!--break-->
+먼저 `XML은 데이터 저장과 전송을 목적으로 만들어진 마크업 언어`입니다. XML은 eXtensible Markup Language의 약자로, 기본적으로 HTML과 같은 마크업 언어의 한 종류입니다. 하지만 XML이란 언어를 정확히 이해하려면 마크업 언어라는 부분에 초점을 맞추기 보다, `"데이터의 저장하고 전달하기 위해 디자인 된 언어"`란 점에 방점을 찍을 필요가 있습니다. 언어로부터 독립적으로 여러 에플리케이션에서 사용할 수 있도록 데이터를 저장해주고 전달해주는 매개체가 되는 존재입니다. 예로 들어 서로 다른 언어를 쓰는 에플리케이션 사이에서 정보를 주고 받을 땐, XML과 같은 공통된 형식을 통해 주고 받으면 서로 편할 것임에 틀림 없습니다. 요즘이야 JSON이라는 선택지도 있지만 여전히 XML은 매력적인 선택지입니다.
+
+XML 파일의 형식은 태그를 사용합니다. 일례를 들면 다음과 같습니다.
+
+```
+<title>제목입니다</title>
+<content>내용입니다</content>
+<sender>발송자</sender>
+```
+
+물론 위와 같이 xml 파일을 작성한다고 해서 어떤 작동을 하는 것은 아닙니다. 위에도 설명했지만, XML은 태생이 데이터를 저장하고 전달하기 위해 디자인된 언어이고, 위 내용은 각각 title, content, sender와 같은 이름의 태그로 각각의 정보를 묶어둔(저장해 둔) 상태일 뿐입니다.
+
+이에 반해 `HTML은 data를 웹상에 표현하기 위한 목적`을 가지고 태어났습니다. 데이터 저장과 전달이 목적인 XML과는 그 디자인 목적부터 달리한다는 점을 염두에 둘 필요가 있습니다. HTML은 Hyper Text Markup Language 의 약자입니다. HTML도 기본적으로 형식이 태그의 형태를 띄고 있기 때문에, 겉으로 보기엔 XML와 큰 차이가 나지 않습니다.
+
+```
+<html>
+<head>
+  <title>제목입니다</title>
+<body>
+  <h1>H1 텍스트입니다.</h1>
+  <p>P 텍스트입니다.</p>
+</body>
+```
+
+하지만 두 언어의 디자인 목적이 다른 만큼, 형식이 같더라도 확연하게 다른 부분이 존재합니다.
+
+바로 `XML은 미리 정의된 태그가 없다(no pre-defined tags)는 점입니다.` 예로 들어 HTML에서는 head 또는 body 태그 각각의 의미가 정해져있고, 그 의미에 맞게 사용해야 합니다. 즉 HTML에서는 미리 정해진 태그들을 사용하는 게 일반적입니다. 하지만 이에 반해 XML는 사전 정의 태그가 존재하지 않습니다. 예로 들어 위 예시를 보면 XML에서도 HTML에서도 title이라는 태그를 사용하고 있는데, HTML에서의 title 태그는 페이지의 제목이라는 명확한 사전 정의가 되어 있는 반면, XML에서는 어떤 사전 의미 또는 역할도 정의되어 있지 않습니다. 그냥 작성자가 입맛대로 사용하면 그만입니다.
+
+
+ 
+참고 출처
+ 
+https://www.w3schools.com/xml/xml_whatis.asp
+http://www.differencebetween.info/difference-between-html-and-xml
+http://www.xmlobjective.com/what-is-the-difference-between-xml-and-html/
+
+`본 게시글은 2017.07.01 마지막 수정되었습니다`
